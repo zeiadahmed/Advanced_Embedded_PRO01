@@ -1,20 +1,20 @@
 /*******************************************************************
  *  FILE DESCIPTION
  *  --------------------------------------------------------------*/
-/**     \file  IntCtrl.c
- *      \brief nested vector Interrupt controllrt Driver
+/**     File:  Std_Types.h
+ *      Module: -
  *
- *      \details the Driver Configure ALL MCU interrupts Priority into
- *               groups and subgroups Enable NVIC Interrupt Gate for Peripherals
+ *      Description: Provides Standrad Types
+ *
  *
  ******************************************************************/
-
+ #ifndef Std_Types_H
+ #define Std_Types_H
 /******************************************************************
  *  INCLUDES
  *****************************************************************/
-  #include "Std_Types.h"
-  #include "IntCtrl.h"
-  #include "Mcu_Hw.h"
+#include "Platform_Types.h"
+#include "Compiler.h"
   
 /******************************************************************
  *  	LOCAL MACROS CONSTANT\FUNCTION
@@ -25,9 +25,10 @@
  *****************************************************************/
  
 /******************************************************************
- *  	GLOBAL DATA
+ *  	GLOBAL DATA PROTOTYPES
  *****************************************************************/
- 
+
+
 /******************************************************************
  *  	LOCAL FUNCTION PROTOTYPES
  *****************************************************************/
@@ -40,6 +41,9 @@
  *  	GLOBAL FUNCTIONS
  *****************************************************************/
 
+/******************************************************************
+ *  	GLOBAL DATA TYPES AND STRUCTURES
+ *****************************************************************/
 
 /******************************************************************
  * \Syntax          : void IntCtrl_Init(void)
@@ -52,18 +56,10 @@
  * \Parameters (out): None
  * \Return value    : None
  *****************************************************************/   
-void IntCtrl_Init(void)
-{
-    /*TODO : Configure grouping\SubGrouping System in APINT register in SCB*/
-    APINT.B.VECTKEY=0xFA05;
-    APINT.B.PRIGROUP=0x5;
-    /*TODO : Assign Group\Subgroup priority in NVIC_PRIx Nvic and SCB_SYSPRIx Registers*/
 
-    /*TODO : Enable\Disable based on user configurations ion NVIC_ENx and SCB_Sys Resigters*/
-}
-
+#endif /*Std_Types_H*/
 
 /******************************************************************
- *  	END OF FILE: IntCtrl.c
+ *  	END OF FILE: Std_Types.h
  *****************************************************************/
 

@@ -1,33 +1,44 @@
 /*******************************************************************
  *  FILE DESCIPTION
  *  --------------------------------------------------------------*/
-/**     \file  IntCtrl.c
- *      \brief nested vector Interrupt controllrt Driver
+/**     File:  Compiler.h
+ *      Module: -
  *
- *      \details the Driver Configure ALL MCU interrupts Priority into
- *               groups and subgroups Enable NVIC Interrupt Gate for Peripherals
+ *      Description: Contain Compiler Dependent MACRO Definition
+ *
  *
  ******************************************************************/
-
+ #ifndef Compiler_H
+ #define Compiler_H
 /******************************************************************
  *  INCLUDES
  *****************************************************************/
-  #include "Std_Types.h"
-  #include "IntCtrl.h"
-  #include "Mcu_Hw.h"
+
   
 /******************************************************************
  *  	LOCAL MACROS CONSTANT\FUNCTION
  *****************************************************************/
- 
+
+
+/******************************************************************
+ *  	GLOBAL CONSTANT MACROS
+ *****************************************************************/
+#define NULL_PTR    ((void*)0)
+
+#define INLINE inline
+
+#define LOCAL_INLINE static inline
+
+
 /******************************************************************
  *  	LOCAL DATA
  *****************************************************************/
  
 /******************************************************************
- *  	GLOBAL DATA
+ *  	GLOBAL DATA PROTOTYPES
  *****************************************************************/
- 
+
+
 /******************************************************************
  *  	LOCAL FUNCTION PROTOTYPES
  *****************************************************************/
@@ -40,6 +51,9 @@
  *  	GLOBAL FUNCTIONS
  *****************************************************************/
 
+/******************************************************************
+ *  	GLOBAL DATA TYPES AND STRUCTURES
+ *****************************************************************/
 
 /******************************************************************
  * \Syntax          : void IntCtrl_Init(void)
@@ -52,18 +66,9 @@
  * \Parameters (out): None
  * \Return value    : None
  *****************************************************************/   
-void IntCtrl_Init(void)
-{
-    /*TODO : Configure grouping\SubGrouping System in APINT register in SCB*/
-    APINT.B.VECTKEY=0xFA05;
-    APINT.B.PRIGROUP=0x5;
-    /*TODO : Assign Group\Subgroup priority in NVIC_PRIx Nvic and SCB_SYSPRIx Registers*/
-
-    /*TODO : Enable\Disable based on user configurations ion NVIC_ENx and SCB_Sys Resigters*/
-}
-
+#endif /*Compiler_H*/
 
 /******************************************************************
- *  	END OF FILE: IntCtrl.c
+ *  	END OF FILE: Compiler.h
  *****************************************************************/
 
