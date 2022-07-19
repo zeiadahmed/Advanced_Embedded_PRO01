@@ -1,39 +1,34 @@
 /*******************************************************************
  *  FILE DESCIPTION
  *  --------------------------------------------------------------*/
-/**     \file  IntCtrl.c
- *      \brief nested vector Interrupt controllrt Driver
+/**     File:  Dio.h
+ *      Module: Dio
  *
- *      \details the Driver Configure ALL MCU interrupts Priority into
- *               groups and subgroups Enable NVIC Interrupt Gate for Peripherals
+ *      Description: header file for Dio.Module
+ *
  *
  ******************************************************************/
-
+ #ifndef Dio_H
+ #define Dio_H
 /******************************************************************
  *  INCLUDES
  *****************************************************************/
-  #include "Std_Types.h"
-  #include "IntCtrl.h"
-  #include "Mcu_Hw.h"
+#include "Std_Types.h"
+
   
 /******************************************************************
  *  	LOCAL MACROS CONSTANT\FUNCTION
  *****************************************************************/
-
- #define NVIC_GROUPING_SYSTEM_XXX  4
- #define NVIC_GROUPING_SYSTEM_XXY  5
- #define NVIC_GROUPING_SYSTEM_XYY  6
- #define NVIC_GROUPING_SYSTEM_YYY  7   
-
- #define APRINT_VECTKEY       0xFA05 
+ 
 /******************************************************************
  *  	LOCAL DATA
  *****************************************************************/
  
 /******************************************************************
- *  	GLOBAL DATA
+ *  	GLOBAL DATA PROTOTYPES
  *****************************************************************/
- 
+
+
 /******************************************************************
  *  	LOCAL FUNCTION PROTOTYPES
  *****************************************************************/
@@ -46,6 +41,52 @@
  *  	GLOBAL FUNCTIONS
  *****************************************************************/
 
+/******************************************************************
+ *  	GLOBAL DATA TYPES AND STRUCTURES
+ *****************************************************************/
+
+#define Dio_PortLevelType uint32
+typedef enum
+{
+         Port0 =0,
+         Port1   ,
+         Port2   ,
+         Port3   ,
+         Port4   ,
+         Port5   ,
+         Port6   ,
+         Port7 
+
+}Dio_PortType;
+
+typedef enum
+{
+    LOW = 0,
+    HIGH
+}Dio_LevelType;
+
+typedef enum
+{
+         Pin0 =0,
+         Pin1   ,
+         Pin2   ,
+         Pin3   ,
+         Pin4   ,
+         Pin5   ,
+         Pin6   ,
+         Pin7 
+}Pin_Num;
+
+
+typedef struct
+{
+
+    /*TODO MAKE STRUCT TO REPRESENT CHANNEL TYPE (PORT,PIN)*/
+    Dio_PortType port;
+    Pin_Num pin;
+
+}Dio_ChannelType;
+
 
 /******************************************************************
  * \Syntax          : void IntCtrl_Init(void)
@@ -57,20 +98,26 @@
  * \Parameters (in) : None
  * \Parameters (out): None
  * \Return value    : None
- *****************************************************************/   
-void IntCtrl_Init(void)
-{
-    /*TODO : Configure grouping\SubGrouping System in APINT register in SCB*/
-    APINT->B.VECTKEY=APRINT_VECTKEY;
-    APINT->B.PRIGROUP=NVIC_GROUPING_SYSTEM;
-	
-    /*TODO : Assign Group\Subgroup priority in NVIC_PRIx Nvic and SCB_SYSPRIx Registers*/
+ *****************************************************************/
 
-    /*TODO : Enable\Disable based on user configurations ion NVIC_ENx and SCB_Sys Resigters*/
-}
 
+Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId);
+
+void Dio_WriteChannel(Dio_ChannelType ChannelId,Dio_LevelType Level);
+
+Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId);
+
+void Dio_WritePort(Dio_PortType PortId,Dio_PortLevelType Level);
+
+Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId);
+
+
+
+
+
+#endif /*Dio_H*/
 
 /******************************************************************
- *  	END OF FILE: IntCtrl.c
+ *  	END OF FILE: Dio.h
  *****************************************************************/
 

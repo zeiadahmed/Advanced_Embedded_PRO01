@@ -1,7 +1,7 @@
 /*******************************************************************
  *  FILE DESCIPTION
  *  --------------------------------------------------------------*/
-/**     \file  IntCtrl.c
+/**     \file  Dio.c
  *      \brief nested vector Interrupt controllrt Driver
  *
  *      \details the Driver Configure ALL MCU interrupts Priority into
@@ -13,19 +13,14 @@
  *  INCLUDES
  *****************************************************************/
   #include "Std_Types.h"
-  #include "IntCtrl.h"
+  #include "Dio.h"
   #include "Mcu_Hw.h"
   
 /******************************************************************
  *  	LOCAL MACROS CONSTANT\FUNCTION
  *****************************************************************/
 
- #define NVIC_GROUPING_SYSTEM_XXX  4
- #define NVIC_GROUPING_SYSTEM_XXY  5
- #define NVIC_GROUPING_SYSTEM_XYY  6
- #define NVIC_GROUPING_SYSTEM_YYY  7   
 
- #define APRINT_VECTKEY       0xFA05 
 /******************************************************************
  *  	LOCAL DATA
  *****************************************************************/
@@ -61,8 +56,6 @@
 void IntCtrl_Init(void)
 {
     /*TODO : Configure grouping\SubGrouping System in APINT register in SCB*/
-    APINT->B.VECTKEY=APRINT_VECTKEY;
-    APINT->B.PRIGROUP=NVIC_GROUPING_SYSTEM;
 	
     /*TODO : Assign Group\Subgroup priority in NVIC_PRIx Nvic and SCB_SYSPRIx Registers*/
 
@@ -71,6 +64,6 @@ void IntCtrl_Init(void)
 
 
 /******************************************************************
- *  	END OF FILE: IntCtrl.c
+ *  	END OF FILE: Dio.c
  *****************************************************************/
 
