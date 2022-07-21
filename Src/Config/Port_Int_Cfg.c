@@ -5,11 +5,7 @@
 /*
 Pin Mode Selection:
 
-GPIO 
-Uart0
-SSI0
-I2C0
-JTAG_SWD
+TODO MAKE APPROPRIATE MODE SELECTION
 
 Pin Level Value:
 Edge_Trig
@@ -33,10 +29,14 @@ Pin_Amp_8
 
 const Port_ConfigType ConfigType [DIO_CONFIG_ARRAY_SIZE]={
     /*Gpio_Pin_Mode  Gpio_Pin_Level_Value  Gpio_Pin_Direction  Gpio_Pin_Attach  Gpio_Pin_Output_Current */
-      {GPIO , Edge_Trig ,OUTPUT,Pull_Up,Pin_Amp_2},
-      {GPIO , Level_Trig ,INPUT,Pull_down,Pin_Amp_4},
-      {GPIO , Edge_Trig ,OUTPUT,Pull_Up,Pin_Amp_2}
+      {{PortB,Pin0},GPIO , HIGH  , OUTPUT , Pull_Up , Pin_Amp_2 },
+      {{PortB,Pin1},GPIO , HIGH  , OUTPUT , Pull_Up , Pin_Amp_2 },
+      {{PortB,Pin2},GPIO , HIGH  , OUTPUT , Pull_Up , Pin_Amp_2 },
+      {{PortB,Pin3},GPIO , HIGH  , OUTPUT , Pull_Up , Pin_Amp_2 },
+      {{PortB,Pin4},GPIO , HIGH  , OUTPUT , Pull_Up , Pin_Amp_2 },
+      {{PortB,Pin5},GPIO , HIGH  , OUTPUT , Pull_Up , Pin_Amp_2 }
 
 
 };
+
 

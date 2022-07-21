@@ -71,7 +71,8 @@ typedef union
 /******************************************************************
  *  	GLOBAL CONSTANT
  *****************************************************************/
-#define CORTEXM4_PERI_BASE_ADDRESS                      0xE000E000
+#define SYSTEM_CONTROL_BUS_ADRESS                           0x400FE000
+#define CORTEXM4_PERI_BASE_ADDRESS                          0xE000E000
 #define NVIC_INTERRUPT_ENABLE								((volatile uint32*)(CORTEXM4_PERI_BASE_ADDRESS+0x100))
 #define NVIC_INTERRUPT_DIABLE								((volatile uint32*)(CORTEXM4_PERI_BASE_ADDRESS+0x180))
 #define NVIC_INTERRUPT_PEND							     	((volatile uint32*)(CORTEXM4_PERI_BASE_ADDRESS+0x200))
@@ -93,44 +94,47 @@ typedef union
 
 /* GPIO REGISTER OFFSETS*/
 
-#define GPIODATA           0x000
-#define GPIODIR            0x400
-#define GPIOIS             0x404
-#define GPIOIBE            0x408
-#define GPIOIEV            0x40C
-#define GPIOIM             0x410
-#define GPIORIS            0x414
-#define GPIOMIS            0x418
-#define GPIOICR            0x41C
-#define GPIOAFSEL          0x420
-#define GPIODR2R           0x500
-#define GPIODR4R           0x504
-#define GPIODR8R           0x508
-#define GPIOODR            0x50C
-#define GPIOPUR            0x510
-#define GPIOPDR            0x514
-#define GPIOSLR            0x518
-#define GPIODEN            0x51C
-#define GPIOLOCK           0x520
-#define GPIOCR             0x524
-#define GPIOAMSEL          0x528
-#define GPIOPCTL           0x52C
-#define GPIOADCCTL         0x530
-#define GPIOMACTL          0x534
-#define GPIOPERIPH_ID_4    0xFD0
-#define GPIOPERIPH_ID_5    0xFD4
-#define GPIOPERIPH_ID_6    0xFD8
-#define GPIOPERIPH_ID_7    0xFDC
-#define GPIOPERIPH_ID_0    0xFE0
-#define GPIOPERIPH_ID_1    0xFE4
-#define GPIOPERIPH_ID_2    0xFE8
-#define GPIOPERIPH_ID_3    0xFEC
-#define GPIOPCELL_ID0      0xFF0
-#define GPIOPCELL_ID1      0xFF4
-#define GPIOPCELL_ID2      0xFF8
-#define GPIOPCELL_ID3      0xFFC
+#define GPIODATA          0x000
+#define GPIODIR           0x400
+#define GPIOIS            0x404
+#define GPIOIBE           0x408
+#define GPIOIEV           0x40C
+#define GPIOIM            0x410
+#define GPIORIS           0x414
+#define GPIOMIS           0x418
+#define GPIOICR           0x41C
+#define GPIOAFSEL         0x420
+#define GPIODR2R          0x500
+#define GPIODR4R          0x504
+#define GPIODR8R          0x508
+#define GPIOODR           0x50C
+#define GPIOPUR           0x510
+#define GPIOPDR           0x514
+#define GPIOSLR           0x518
+#define GPIODEN           0x51C
+#define GPIOLOCK          0x520
+#define GPIOCR            0x524
+#define GPIOAMSEL         0x528
+#define GPIOPCTL          0x52C
+#define GPIOADCCTL        0x530
+#define GPIOMACTL         0x534
+#define GPIOPERIPH_ID_4   0xFD0
+#define GPIOPERIPH_ID_5   0xFD4
+#define GPIOPERIPH_ID_6   0xFD8
+#define GPIOPERIPH_ID_7   0xFDC
+#define GPIOPERIPH_ID_0   0xFE0
+#define GPIOPERIPH_ID_1   0xFE4
+#define GPIOPERIPH_ID_2   0xFE8
+#define GPIOPERIPH_ID_3   0xFEC
+#define GPIOPCELL_ID0     0xFF0
+#define GPIOPCELL_ID1     0xFF4
+#define GPIOPCELL_ID2     0xFF8
+#define GPIOPCELL_ID3     0xFFC
 
 
+/*SYSTEM CONTROL REGISTER OFFSETS*/
+#define GPIOHBCTL         0x06C
+#define RCGCGPIO          0x608
 
 
 

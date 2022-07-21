@@ -15,7 +15,7 @@
  *  INCLUDES
  *****************************************************************/
 #include "Std_Types.h"
-
+#include "Dio.h"
 
   
 /******************************************************************
@@ -42,29 +42,77 @@
 /******************************************************************
  *  	GLOBAL DATA TYPES AND STRUCTURES
  *****************************************************************/
+
+// typedef enum
+// {
+//          Pin0 =0,
+//          Pin1   ,
+//          Pin2   ,
+//          Pin3   ,
+//          Pin4   ,
+//          Pin5   ,
+//          Pin6   ,
+//          Pin7 
+// }PinNum;
+
+// typedef enum
+// {
+//          PortA =0,
+//          PortB   ,
+//          PortC   ,
+//          PortD   ,
+//          PortE   ,
+//          PortF   
+// }PortNum;
+
+typedef struct{
+  Dio_PortType port;
+  Pin_Num  pin;
+}PortPin;
+
 typedef enum{
  
-  GPIO =0 ,
-  Uart0   ,
-  SSI0    ,
-  I2C0    ,
-  JTAG_SWD,
+  GPIO = 0     ,
+  FUNCTION1    , 
+  FUNCTION2    ,
+  FUNCTION3    ,
+  FUNCTION4    ,
+  FUNCTION5    ,
+  FUNCTION6    ,
+  FUNCTION7    ,
+  FUNCTION8    ,
+  FUNCTION9    ,
+  FUNCTION10   ,
+  FUNCTION11   ,
+  FUNCTION12   ,
+  FUNCTION13   ,
+  FUNCTION14   , 
+  FUNCTION15   ,
+  ANALOG_FUNCTION    
+  
+}PortPinMode;
 
-}Gpio_Pin_Mode;
-
-typedef enum{
+// typedef enum{
  
-  Edge_Trig=0, //GPIOIS 0
-  Level_Trig   //GPIOIS 1
+//   Edge_Trig=0, //GPIOIS 0
+//   Level_Trig   //GPIOIS 1
 
-}Gpio_Pin_Level_Value;
+// }Gpio_Pin_Level_Value;
+
+// typedef enum{
+//   LOW=0,
+//   HIGH
+
+// }PortpinLevelValue;
+
+
 
 typedef enum{
  
   OUTPUT =0 ,
   INPUT
 
-}Gpio_Pin_Direction;
+}PortPinDirection;
 
 typedef enum{
  
@@ -72,7 +120,7 @@ typedef enum{
   Pull_down,
   Open_Drain
 
-}Gpio_Pin_Attach;
+}PortPinInternalAttach;
 
 typedef enum{
   
@@ -80,18 +128,19 @@ typedef enum{
   Pin_Amp_4    ,
   Pin_Amp_8 
 
-}Gpio_Pin_Output_Current;
+}PortPinOutputCurrent;
 
 
 
 typedef struct 
 {
 
-  Gpio_Pin_Mode             pinMode;
-  Gpio_Pin_Level_Value      pinLevelValue;
-  Gpio_Pin_Direction        pinDirection;
-  Gpio_Pin_Attach           pinAttach;
-  Gpio_Pin_Output_Current   pinOutputCurrent;
+  PortPin                portPin;
+  PortPinMode            pinMode;
+  Dio_LevelType          pinLevelValue;
+  PortPinDirection       pinDirection;
+  PortPinInternalAttach  pinAttach;
+  PortPinOutputCurrent   pinOutputCurrent;
 
 }Port_ConfigType;
 

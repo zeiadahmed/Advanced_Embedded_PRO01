@@ -24,7 +24,14 @@
 /******************************************************************
  *  	LOCAL DATA
  *****************************************************************/
- 
+static uint32 PortAdresList[6]={
+                  GPIO_Port_A,
+                  GPIO_Port_B,
+                  GPIO_Port_C,
+                  GPIO_Port_D,
+                  GPIO_Port_E,
+                  GPIO_Port_F
+};
 /******************************************************************
  *  	GLOBAL DATA
  *****************************************************************/
@@ -36,7 +43,58 @@
 /******************************************************************
  *  	LOCAL FUNCTIONS
  *****************************************************************/
- 
+
+
+Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId){
+
+  uint32 portAdress       =   PortAdresList[ChannelId.port];
+  uint32 pinBitMask      =   portAdress+((0x1<<ChannelId.pin)<<2);             
+  uint32 pinDataAdress   =   pinBitMask+GPIODATA;
+  Dio_LevelType level =   *((volatile uint32 *)(pinDataAdress));
+  level=level>>ChannelId.pin;
+  return level;
+
+
+}
+
+void Dio_WriteChannel(Dio_ChannelType ChannelId,Dio_LevelType Level){
+
+  uint32 portAdress      =   PortAdresList[ChannelId.port];
+  uint32 pinBitMask      =   portAdress+((0x1<<ChannelId.pin)<<2);             
+  uint32 pinDataAdress   =   pinBitMask+GPIODATA;
+   *((volatile uint32 *)(pinDataAdress))= Level << ChannelId.pin;
+
+
+
+}
+
+Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId){
+
+  uint32 portAdress       =   PortAdresList[PortId];
+  uint32 portBitMask      =   portAdress+(0xFF<<2);
+  uint32 portDataAdress   =   portBitMask+GPIODATA;
+  Dio_PortLevelType level =   *((volatile uint32 *)(portDataAdress));
+  return level;
+
+}
+
+
+void Dio_WritePort(Dio_PortType PortId,Dio_PortLevelType Level){
+
+  uint32 portAdress       =   PortAdresList[PortId];
+  uint32 portBitMask      =   portAdress+(0xFF<<2);
+  uint32 portDataAdress   =   portBitMask+GPIODATA; 
+  *((volatile uint32 *)(portDataAdress)) = Level;
+
+
+}
+
+Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId){
+  Dio_LevelType currentLevel = Dio_ReadChannel(ChannelId);
+  Dio_WriteChannel(ChannelId, currentLevel== 0 ? 1:0);
+
+
+}
 /******************************************************************
  *  	GLOBAL FUNCTIONS
  *****************************************************************/
@@ -53,14 +111,7 @@
  * \Parameters (out): None
  * \Return value    : None
  *****************************************************************/   
-void IntCtrl_Init(void)
-{
-    /*TODO : Configure grouping\SubGrouping System in APINT register in SCB*/
-	
-    /*TODO : Assign Group\Subgroup priority in NVIC_PRIx Nvic and SCB_SYSPRIx Registers*/
 
-    /*TODO : Enable\Disable based on user configurations ion NVIC_ENx and SCB_Sys Resigters*/
-}
 
 
 /******************************************************************

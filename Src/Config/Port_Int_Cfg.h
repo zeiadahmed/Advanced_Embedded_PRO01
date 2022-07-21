@@ -4,6 +4,6 @@
 
 /*set the number of Ports you want to configure*/
 
-#define DIO_CONFIG_ARRAY_SIZE    3
+#define DIO_CONFIG_ARRAY_SIZE    6
 
 #endif

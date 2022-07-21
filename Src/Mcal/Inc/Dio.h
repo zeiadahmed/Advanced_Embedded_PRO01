@@ -44,18 +44,16 @@
 /******************************************************************
  *  	GLOBAL DATA TYPES AND STRUCTURES
  *****************************************************************/
-
-#define Dio_PortLevelType uint32
+ 
+typedef uint32 Dio_PortLevelType;
 typedef enum
 {
-         Port0 =0,
-         Port1   ,
-         Port2   ,
-         Port3   ,
-         Port4   ,
-         Port5   ,
-         Port6   ,
-         Port7 
+         PortA =0,
+         PortB   ,
+         PortC   ,
+         PortD   ,
+         PortE   ,
+         PortF    
 
 }Dio_PortType;
 
@@ -63,6 +61,7 @@ typedef enum
 {
     LOW = 0,
     HIGH
+
 }Dio_LevelType;
 
 typedef enum
