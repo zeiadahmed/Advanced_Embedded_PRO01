@@ -92,12 +92,15 @@ typedef enum{
   
 }PortPinMode;
 
-// typedef enum{
- 
-//   Edge_Trig=0, //GPIOIS 0
-//   Level_Trig   //GPIOIS 1
+typedef enum{
+  NONE = 0     ,
+  FALLING_EGDE , //GPIOIS=0 , GPIOIBE=0 , GPIOIEV=0 
+  RISING_EDGE  , //GPIOIS=0 , GPIOIBE=0 , GPIOIEV=1
+  HIGH_LEVELS  , //GPIOIS=1 , GPIOIBE=0 , GPIOIEV=1
+  LOW_LEVELS   , //GPIOIS=1 , GPIOIBE=0 , GPIOIEV=0
+  BOTH_EDGES     //GPIOIS=0 , GPIOIBE=1 , GPIOIEV=x 
 
-// }Gpio_Pin_Level_Value;
+}Interrupt_Type;
 
 // typedef enum{
 //   LOW=0,
@@ -141,6 +144,8 @@ typedef struct
   PortPinDirection       pinDirection;
   PortPinInternalAttach  pinAttach;
   PortPinOutputCurrent   pinOutputCurrent;
+  Interrupt_Type         pinInterruptType;
+
 
 }Port_ConfigType;
 

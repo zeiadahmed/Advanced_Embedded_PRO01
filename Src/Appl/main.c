@@ -7,6 +7,7 @@ int main(void)
 {
 	Dio_PortType portA = PortA;
 	Dio_PortLevelType value=0 ;
+	Dio_ChannelType PORTA3 = {PortA,Pin3};
 	Port_Init(ConfigType);
 	uint32 i;
 	while(1)
