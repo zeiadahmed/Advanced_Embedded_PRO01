@@ -21,8 +21,7 @@
  *  	LOCAL MACROS CONSTANT\FUNCTION
  *****************************************************************/
 #define MAX_PORT_NUMBER 6
-#define GET_BIT_MASK(portAdress,pin) portAdress+((0x1<<pin)<<2)
-#define GET_REGISTER_POINTER(RegisterAdress)   *((volatile uint32 *)(RegisterAdress))
+
 
 
 /******************************************************************

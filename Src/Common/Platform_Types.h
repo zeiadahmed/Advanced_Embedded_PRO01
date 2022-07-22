@@ -23,6 +23,8 @@
 #define CLR_BIT(REG,PIN) (REG) &= ~(1 << (PIN))
 #define TOG_BIT(REG,PIN) (REG) ^=  (1 << (PIN))
 #define GET_BIT(REG,PIN) (((REG) >> (PIN)) & 0x01)
+#define GET_BIT_MASK(portAdress,pin) portAdress+((0x1<<pin)<<2)
+#define GET_REGISTER_POINTER(RegisterAdress)   *((volatile uint32 *)(RegisterAdress))
 
 #define WORD_LENGTH_BITS 32u
 #define WORD_LENGTH_BYTES 4u
