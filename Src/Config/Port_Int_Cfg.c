@@ -1,5 +1,5 @@
 #include "Port_Int.h"
-#include "Port_Int_Cfg.h"
+#include "Port_Int.h"
 
 
 /*
@@ -26,6 +26,8 @@ Pin_Amp_4
 Pin_Amp_8
 
 */
+
+
 
 const Port_ConfigType ConfigType [DIO_CONFIG_ARRAY_SIZE]={
 

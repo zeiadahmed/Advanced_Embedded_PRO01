@@ -15,7 +15,7 @@
   #include "Std_Types.h"
   #include "Port_Int.h"
   #include "Mcu_Hw.h"
-  #include "Port_Int_Cfg.h"
+
   
 /******************************************************************
  *  	LOCAL MACROS CONSTANT\FUNCTION
