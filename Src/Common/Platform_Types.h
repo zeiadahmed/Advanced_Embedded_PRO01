@@ -47,6 +47,10 @@
 
 #define CPU_BIT_ORDER   LSB_FISRT
 #define CPU_BYTE_ORDER  LOW_BYTE_FIRST
+
+
+#define NULL_PTR       ((void *)0)
+#define NULL					0
 /******************************************************************
  *  	LOCAL MACROS CONSTANT\FUNCTION
  *****************************************************************/

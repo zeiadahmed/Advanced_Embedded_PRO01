@@ -136,7 +136,8 @@ typedef union
 /*SYSTEM CONTROL REGISTER OFFSETS*/
 #define GPIOHBCTL              0x06C
 #define RCGCGPIO               0x608
-
+#define RCGCTIMER              0x604
+#define RCGC1                  0x104
 
 
 /*TIMERS BASE ADRESSES*/
@@ -182,6 +183,16 @@ typedef union
  #define GPTMTAPV              0x064         
  #define GPTMTBPV              0x068    
  #define GPTMPP                0xFC0      
+
+ /*TIMER REGISTRES IMPORTANT BITS*/
+ #define TAEN     0
+ #define TBEN     8
+ #define TACDIR   4
+ #define TATOIM   0
+ #define TASTALL  1
+ #define TATOCINT 0
+ 
+
 
 
 /******************************************************************

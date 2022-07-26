@@ -49,7 +49,7 @@ typedef uint32 Gpt_ValueType;
 
 /*Gpt_Notification_Type*/
 
-typedef void (* GptNotification ) (void);
+typedef void(* GptNotification ) (void);
 
 /*Gpt_ChannelType*/
 
@@ -74,10 +74,11 @@ typedef enum
 
 typedef enum
 {
-    GPT_CH_MODE_CONTINOUS = 0,
-    GPT_CH_MODE_ONESHOT
+    
+    GPT_CH_MODE_ONESHOT   = 0x1,
+    GPT_CH_MODE_CONTINOUS = 0x2
 
-}Gpt_Mode_Type;
+}Gpt_Channel_Mode_Type;
 
 /*Gpt_ModeType*/
 
@@ -86,7 +87,7 @@ typedef enum
     GPT_MODE_NORMAL= 0,
     GPT_MODE_SLEEP
 
-}Gpt_Channel_Mode_Type;
+}Gpt_Mode_Type;
 
 
 
@@ -94,6 +95,7 @@ typedef enum
 
 typedef struct 
 {
+    /*TODO SEE IF YOU WILL ADD TICK FREQURNCY*/
     boolean GPT_PREDEF_TIMER_100US_32BIT;
     boolean GPT_PREDEF_TIMER_US_16BIT;
     boolean GPT_PREDEF_TIMER_1US_24BIT;
@@ -145,8 +147,7 @@ Gpt_ValueType Gpt_GetTimeRemaining (Gpt_ChannelType Channel);
 
 // Std_ReturnType Gpt_GetPredefTimerValue (Gpt_PredefTimerType PredefTimer, uint32 * TimeValuePtr );
 
-/*Ensure the timer is disabled (the TnEN bit in the GPTMCTL register is cleared) before making
-any changes.*/
+/*Ensure the timer is disabled (the TnEN bit in the GPTMCTL register is cleared) before making any changes.*/
 
 /*Write the GPTM Configuration Register (GPTMCFG) with a value of 0x0000.0000.*/
 
@@ -173,7 +174,7 @@ Register (GPTMICR).*/
  *  	GLOBAL DATA PROTOTYPES
  *****************************************************************/
 extern const  Gpt_ConfigType Gpt_Cfg[];
-
+extern const  Gpt_Driver_Cfg_Type Gpt_Driver_Cfg[];
 
 #endif /*GPT_H*/
 
