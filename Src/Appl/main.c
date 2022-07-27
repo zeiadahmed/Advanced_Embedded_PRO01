@@ -9,15 +9,15 @@ int main(void)
 	// Dio_PortType portA = PortB;
 	// Dio_PortLevelType value=0 ;
 	// Dio_ChannelType PORTA3 = {PortA,Pin3};
-	Port_Init(ConfigType);
+	
 	// uint32 i;
-	// IntCtrl_Init();
+	
+	IntCtrl_Init();
 	
 	Gpt_Init(Gpt_Cfg);
-	Gpt_StopTimer(Gpt_Cfg[0].channelId);
-	Gpt_StartTimer(Gpt_Cfg[0].channelId,Gpt_Cfg[0].tickValue);	
 
-	
+
+	Port_Init(ConfigType);
 	while(1)
 	{
 		

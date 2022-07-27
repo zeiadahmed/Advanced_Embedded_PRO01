@@ -47,11 +47,12 @@ static uint32 PortAdresList[6]={
 
 Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId){
 
-  uint32 portAdress       =   PortAdresList[ChannelId.port];
-  uint32 pinBitMask      =   portAdress+((0x1<<ChannelId.pin)<<2);             
-  uint32 pinDataAdress   =   pinBitMask+GPIODATA;
-  Dio_LevelType level =   *((volatile uint32 *)(pinDataAdress));
-  level=level>>ChannelId.pin;
+  uint32 portAdress      =   PortAdresList[ChannelId.port];
+  // uint32 pinBitMask      =   portAdress+((0x1<<ChannelId.pin)<<2);             
+  // uint32 pinDataAdress   =   pinBitMask+GPIODATA;
+  // Dio_LevelType level    =  GET_REGISTER_POINTER(pinDataAdress);
+  Dio_LevelType level    =  GET_REGISTER_POINTER(portAdress+0xFF<<2);
+  level=(level>>ChannelId.pin)&0x1;
   return level;
 
 
@@ -62,7 +63,9 @@ void Dio_WriteChannel(Dio_ChannelType ChannelId,Dio_LevelType Level){
   uint32 portAdress      =   PortAdresList[ChannelId.port];
   uint32 pinBitMask      =   portAdress+((0x1<<ChannelId.pin)<<2);             
   uint32 pinDataAdress   =   pinBitMask+GPIODATA;
-   *((volatile uint32 *)(pinDataAdress))= Level << ChannelId.pin;
+  GET_REGISTER_POINTER(pinDataAdress)= Level << ChannelId.pin;
+  
+
 
 
 
@@ -73,7 +76,7 @@ Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId){
   uint32 portAdress       =   PortAdresList[PortId];
   uint32 portBitMask      =   portAdress+(0xFF<<2);
   uint32 portDataAdress   =   portBitMask+GPIODATA;
-  Dio_PortLevelType level =   *((volatile uint32 *)(portDataAdress));
+  Dio_PortLevelType level =   GET_REGISTER_POINTER(portDataAdress);
   return level;
 
 }
@@ -84,7 +87,7 @@ void Dio_WritePort(Dio_PortType PortId,Dio_PortLevelType Level){
   uint32 portAdress       =   PortAdresList[PortId];
   uint32 portBitMask      =   portAdress+(0xFF<<2);
   uint32 portDataAdress   =   portBitMask+GPIODATA; 
-  *((volatile uint32 *)(portDataAdress)) = Level;
+  GET_REGISTER_POINTER(portDataAdress) = Level;
 
 
 }
@@ -92,6 +95,7 @@ void Dio_WritePort(Dio_PortType PortId,Dio_PortLevelType Level){
 Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId){
   Dio_LevelType currentLevel = Dio_ReadChannel(ChannelId);
   Dio_WriteChannel(ChannelId, currentLevel== 0 ? 1:0);
+  return currentLevel== 0 ? 1:0;
 
 
 }

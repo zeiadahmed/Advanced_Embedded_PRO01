@@ -80,15 +80,8 @@ void Gpt_Init(const Gpt_ConfigType *ConfigPtr){
   for (uint32 index=0;index<GPT_CONFIG_ARRAY_SIZE;index++){
   uint8 channelId = ConfigPtr[index].channelId;
   
-  
-
-  
-
   /*TODO ENABLE TIMER BY SETTING THE CORRESPONDING BIT IN RCGCTIMER REGISTER*/
   SET_BIT(GET_REGISTER_POINTER(SYSTEM_CONTROL_BUS_ADRESS+RCGCTIMER),channelId%6);
-
- 
-
 
   /*STOP TIMER*/
   Gpt_StopTimer(channelId);
@@ -103,10 +96,6 @@ void Gpt_Init(const Gpt_ConfigType *ConfigPtr){
 
   /*TODO ENABLE STALL BIT */
   // SET_BIT(GET_REGISTER_POINTER(PortAdresList[channelId]+GPTMCTL),TASTALL); 
-
-
-
-
 
   /*TODO SELECT ONE SHOT OR PERIODIC MODE FROM TBMR FEILD IN GPTMTBMR FOR TIMER B*/
   
@@ -141,6 +130,7 @@ void Gpt_DisableNotification (Gpt_ChannelType Channel){
   CLR_BIT(GET_REGISTER_POINTER(PortAdresList[Channel]+GPTMIMR),TATOIM);
   /*TODO DISABLE TIME OUT INTERRUPT FOR TIMER B BY CLEARING TBTOIM BIT ON GPTMIMR REGISTER*/
   
+  
 }
 
 void Gpt_EnableNotification (Gpt_ChannelType Channel){
@@ -154,9 +144,8 @@ void Gpt_EnableNotification (Gpt_ChannelType Channel){
 
 void Gpt_StartTimer (Gpt_ChannelType Channel,Gpt_ValueType Value){
 
-  
+  GET_REGISTER_POINTER(PortAdresList[Channel]+GPTMTAILR)=Value;  
   SET_BIT(GET_REGISTER_POINTER(PortAdresList[Channel]+GPTMCTL),TAEN);
-  GET_REGISTER_POINTER(PortAdresList[Channel]+GPTMTAILR)=Value;
   SET_BIT(GET_REGISTER_POINTER(PortAdresList[Channel]+GPTMICR),TATOCINT);
   /*TODO START TIMER BY WRITING 1 ON TAEN FEILD IN GPTMCTL REGISTER */
   /*TODO START TIMER BY WRITING 1 ON TBEN FEILD IN GPTMCTL REGISTER */
@@ -180,7 +169,7 @@ Gpt_ValueType Gpt_GetTimeElapsed ( Gpt_ChannelType Channel){
   /*TODO GET THE VALUE OF THE CURRENT TIMER*/
   
   /*TODO SUBTRACT CURRENT VALUE MAX REGISTER CAPACITY */
-  return 0xFFFFFFF-GET_REGISTER_POINTER(PortAdresList[Channel]+GPTMTAV); 
+  return GET_REGISTER_POINTER(PortAdresList[Channel]+GPTMTAILR) - GET_REGISTER_POINTER(PortAdresList[Channel]+GPTMTAV); 
   /*TODO GET THE VALUE OF PRESCALER TIMER*/
   /*TODO SUBTRACT PRESCALER VALUE FROM PRESCALER DIVISOR*/
   /*TODO MULTIPLY THE VALUE OF CURRENT TIMER BY PRESCALER DIVISER*/
@@ -205,10 +194,13 @@ Gpt_ValueType Gpt_GetTimeRemaining (Gpt_ChannelType Channel){
 
 
 void TIMER0A_Handler(void){
-
+  
   GptNotification Timer0_CallBack =  Interrupt_Service_Routiens[Timer_0_16_32_Bit];
-  if (Timer0_CallBack != NULL)
+  if (Timer0_CallBack != NULL){
+  SET_BIT(GET_REGISTER_POINTER(Timer_0_16_32_Bit+GPTMICR),TATOCINT);
   Timer0_CallBack();
+
+  }
 
 }
 

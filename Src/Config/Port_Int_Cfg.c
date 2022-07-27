@@ -38,7 +38,9 @@ const Port_ConfigType ConfigType [DIO_CONFIG_ARRAY_SIZE]={
       { { PortB , Pin2 }  , GPIO , HIGH  , OUTPUT , Pull_Up , Pin_Amp_2 ,  HIGH_LEVELS  },
       { { PortB , Pin3 }  , GPIO , HIGH  , OUTPUT , Pull_Up , Pin_Amp_2 ,  BOTH_EDGES   },
       { { PortB , Pin4 }  , GPIO , HIGH  , OUTPUT , Pull_Up , Pin_Amp_2 ,  NONE         },
-      { { PortB , Pin5 }  , GPIO , HIGH  , OUTPUT , Pull_Up , Pin_Amp_2 ,  NONE         }
+      { { PortB , Pin5 }  , GPIO , HIGH  , OUTPUT , Pull_Up , Pin_Amp_2 ,  NONE         },
+      { { PortF , Pin1 }  , GPIO , HIGH  , OUTPUT , Pull_Up , Pin_Amp_2 ,  NONE         }
+
 
 
 };
