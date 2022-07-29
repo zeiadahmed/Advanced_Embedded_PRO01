@@ -52,6 +52,20 @@
 /******************************************************************
  *  	LOCAL FUNCTIONS
  *****************************************************************/
+
+/******************************************************************
+ * \Syntax          : uint32 Get_Group_Priority(void)
+ * \Description     : returns the 3 bit value corresponfing to grouping 
+ *                    division chosen by the used
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : groupPriority the priority of interrupt sorted by group
+ *                    subgroupPriotity the priority of the interrupt within the group
+ * \Parameters (out): uint32 the value of the interrupt priority
+ * \Return value    : None
+ *****************************************************************/ 
+
  uint32 Get_Group_Priority(uint8 groupPriority,uint8 subgroupPriotity){
     switch (NVIC_GROUPING_SYSTEM)
     {
@@ -89,6 +103,7 @@
  * \Parameters (out): None
  * \Return value    : None
  *****************************************************************/   
+
 void IntCtrl_Init(void)
 {
     ENABLE_INT_F();

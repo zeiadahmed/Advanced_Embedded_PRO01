@@ -44,6 +44,16 @@ static uint32 PortAdresList[6]={
  *  	LOCAL FUNCTIONS
  *****************************************************************/
 
+/******************************************************************
+ * \Syntax          : Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId)
+ * \Description     : returns the value on a given channel
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : ChannelId the channel struct indicating port and pin number  
+ * \Parameters (out): Dio_LevelType
+ * \Return value    : None
+ *****************************************************************/
 
 Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId){
 
@@ -56,6 +66,18 @@ Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId){
 
 }
 
+/******************************************************************
+ * \Syntax          : void Dio_WriteChannel(Dio_ChannelType ChannelId,Dio_LevelType Level)
+ * \Description     : write a given level value on a chosen channel 
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : Level the value to be written in the channel 
+ *                    ChannelId the channel struct indicating port and pin number  
+ * \Parameters (out): None
+ * \Return value    : None
+ *****************************************************************/
+
 void Dio_WriteChannel(Dio_ChannelType ChannelId,Dio_LevelType Level){
 
   uint32 portAdress      =   PortAdresList[ChannelId.port];
@@ -64,6 +86,17 @@ void Dio_WriteChannel(Dio_ChannelType ChannelId,Dio_LevelType Level){
   GET_REGISTER_POINTER(pinDataAdress)= Level << ChannelId.pin;
   
 }
+
+/******************************************************************
+ * \Syntax          : Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId)
+ * \Description     : returns the value on a chosen port in the gpio
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : PortId the port id to read from
+ * \Parameters (out): Dio_PortLevelType the value on the chosen port
+ * \Return value    : None
+ *****************************************************************/
 
 Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId){
 
@@ -75,6 +108,17 @@ Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId){
 
 }
 
+/******************************************************************
+ * \Syntax          : void Dio_WritePort(void)
+ * \Description     : writes a value on a chosen port in the gpio
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : PortId the port number to write on
+ *                    Level the value to write on the desired port
+ * \Parameters (out): None
+ * \Return value    : None
+ *****************************************************************/
 
 void Dio_WritePort(Dio_PortType PortId,Dio_PortLevelType Level){
 
@@ -85,6 +129,17 @@ void Dio_WritePort(Dio_PortType PortId,Dio_PortLevelType Level){
 
 
 }
+
+/******************************************************************
+ * \Syntax          : Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId)
+ * \Description     : toggle the value on a given channel 
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : ChannelId the channel that will be toggled
+ * \Parameters (out): Dio_LevelType the new value of the channel after the toggle
+ * \Return value    : None
+ *****************************************************************/
 
 Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId){
   Dio_LevelType currentLevel = Dio_ReadChannel(ChannelId);

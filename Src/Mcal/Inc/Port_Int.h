@@ -144,7 +144,19 @@ typedef struct
  *  	GLOBAL FUNCTIONS PROTOTYPES
  *****************************************************************/
 
-extern void Port_Init(const Port_ConfigType* ConfigPtr);
+/******************************************************************
+ * \Syntax          : void Port_Init(const Port_ConfigType* ConfigPtr)
+ * \Description     : initialize the ports according to the user configurations
+ *                    given in the Port configuration file
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : ConfigPtr the array of configurations set by the user
+ * \Parameters (out): None
+ * \Return value    : None
+ *****************************************************************/   
+
+void Port_Init(const Port_ConfigType* ConfigPtr);
 
 #endif /*Port_Int_H*/
 

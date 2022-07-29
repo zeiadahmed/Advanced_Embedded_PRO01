@@ -118,30 +118,95 @@ typedef struct
 
 
 /******************************************************************
- * \Syntax          : void IntCtrl_Init(void)
- * \Description     : initialize Nvic\SCB Module by parsing the configuration
- *                    into Nvic\SCB registers
+ * \Syntax          : void Gpt_Init(const Gpt_ConfigType *ConfigPtr)
+ * \Description     : Initialize the general purpose timers according 
+ *                    to user configurations
  * 
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Non Reentrant
- * \Parameters (in) : None
+ * \Parameters (in) : ConfigPtr the array of user configurations for each selected timer
  * \Parameters (out): None
  * \Return value    : None
  *****************************************************************/
 
 void Gpt_Init(const Gpt_ConfigType *ConfigPtr);
 
+/******************************************************************
+ * \Syntax          : void Gpt_DisableNotification(Gpt_ChannelType Channel)
+ * \Description     : disables the Interrupt on a given channel 
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : Channel channel to disable its interrupts
+ * \Parameters (out): None
+ * \Return value    : None
+ *****************************************************************/
+
 void Gpt_DisableNotification (Gpt_ChannelType Channel);
+
+/******************************************************************
+ * \Syntax          : void Gpt_EnableNotification(Gpt_ChannelType Channel)
+ * \Description     : enables the Interrupt on a given channel 
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : Channel channel to enable its interrupts
+ * \Parameters (out): None
+ * \Return value    : None
+ *****************************************************************/
 
 void Gpt_EnableNotification (Gpt_ChannelType Channel);
 
+/******************************************************************
+ * \Syntax          : void Gpt_StartTimer(Gpt_ChannelType Channel,Gpt_ValueType Value)
+ * \Description     : enables the timer TEN feild to start the timer
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : Channel the channel number to start
+ *                    Value the preload value to start the timer with
+ * \Parameters (out): None
+ * \Return value    : None
+ *****************************************************************/
+
 void Gpt_StartTimer (Gpt_ChannelType Channel,Gpt_ValueType Value);
+
+/******************************************************************
+ * \Syntax          : void Gpt_StopTimer(Gpt_ChannelType Channel)
+ * \Description     : disables the timer TEN feild to stop the timer
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : Channel the channel number to stop
+ * \Parameters (out): None
+ * \Return value    : None
+ *****************************************************************/
 
 void Gpt_StopTimer (Gpt_ChannelType Channel);
 
-void Gpt_Notification_Channel ( void );
+/******************************************************************
+ * \Syntax          : Gpt_ValueType Gpt_GetTimeElapsed(Gpt_ChannelType Channel)
+ * \Description     : returns the number of counted ticks from the start of the timer
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : Channel the channel id to get its elapsed tick value
+ * \Parameters (out): Gpt_ValueType the elapsed tick value 
+ * \Return value    : None
+ *****************************************************************/
 
-Gpt_ValueType Gpt_GetTimeElapsed ( Gpt_ChannelType Channel);
+Gpt_ValueType Gpt_GetTimeElapsed ( Gpt_ChannelType Channel );
+
+/******************************************************************
+ * \Syntax          : Gpt_ValueType Gpt_GetTimeRemaining(Gpt_ChannelType Channel)
+ * \Description     : returns the number of ticks still remaining for the timer to reset
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : Channel the channel id to get its remaining tick value
+ * \Parameters (out): Gpt_ValueType the remaining tick value 
+ * \Return value    : None
+ *****************************************************************/
 
 Gpt_ValueType Gpt_GetTimeRemaining (Gpt_ChannelType Channel);
 

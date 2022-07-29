@@ -1,8 +1,6 @@
 
-#include "Dio.h"
-#include "Std_Types.h"
-#include "Gpt.h"
-#include "Mcu_Hw.h"
+
+
 int main(void)
 {
 
@@ -10,20 +8,11 @@ int main(void)
 	Timer_Init();
 	Gpio_Init();
 
-	while(1)
+	while (1)
 	{
-		
 
-			Detect_Press();
-			Flip_Led();
-		
-		
-			
-
-
-			
-		
-
-}
+		Detect_Press();
+		Flip_Led();
+	}
 	return 0;
 }

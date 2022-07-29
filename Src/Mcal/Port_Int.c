@@ -143,16 +143,16 @@ void Set_Interrupts(uint32 baseAdress, Pin_Num currentPin, Interrupt_Type interr
  *****************************************************************/
 
 /******************************************************************
- * \Syntax          : void Port_Init(void)
- * \Description     : initialize Nvic\SCB Module by parsing the configuration
- *                    into Nvic\SCB registers
- *
+ * \Syntax          : void Port_Init(const Port_ConfigType* ConfigPtr)
+ * \Description     : initialize the ports according to the user configurations
+ *                    given in the Port configuration file
+ * 
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Non Reentrant
- * \Parameters (in) : None
+ * \Parameters (in) : ConfigPtr the array of configurations set by the user
  * \Parameters (out): None
  * \Return value    : None
- *****************************************************************/
+ *****************************************************************/  
 
 void Port_Init(const Port_ConfigType *ConfigPtr)
 {
@@ -200,6 +200,20 @@ void Port_Init(const Port_ConfigType *ConfigPtr)
    }
 }
 
+
+
+
+
+/******************************************************************
+ * \Syntax          : void GPIOF_Handler(void)
+ * \Description     : interrupt service routen corresponding to gpio portF
+ * 
+ * \Sync\Async      : Synchronous
+ * \Reentrancy      : Non Reentrant
+ * \Parameters (in) : None
+ * \Parameters (out): None
+ * \Return value    : None
+ *****************************************************************/  
 void GPIOF_Handler(void)
 {
 

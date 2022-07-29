@@ -155,18 +155,7 @@ typedef struct
 
 }Nvic_CfgType;
 
-/******************************************************************
- * \Syntax          : void IntCtrl_Init(void)
- * \Description     : initialize Nvic\SCB Module by parsing the configuration
- *                    into Nvic\SCB registers
- * 
- * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : None
- * \Parameters (out): None
- * \Return value    : None
- *****************************************************************/   
-void IntCtrl_Init(void);
+
 #endif /*IntCtrl_H*/
 
 /******************************************************************
