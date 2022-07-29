@@ -44,27 +44,10 @@
  *  	GLOBAL DATA TYPES AND STRUCTURES
  *****************************************************************/
 
-// typedef enum
-// {
-//          Pin0 =0,
-//          Pin1   ,
-//          Pin2   ,
-//          Pin3   ,
-//          Pin4   ,
-//          Pin5   ,
-//          Pin6   ,
-//          Pin7 
-// }PinNum;
 
-// typedef enum
-// {
-//          PortA =0,
-//          PortB   ,
-//          PortC   ,
-//          PortD   ,
-//          PortE   ,
-//          PortF   
-// }PortNum;
+typedef void(* GpioNotification ) (Pin_Num pin);
+
+
 
 typedef struct{
   Dio_PortType port;
@@ -104,11 +87,6 @@ typedef enum{
 
 }Interrupt_Type;
 
-// typedef enum{
-//   LOW=0,
-//   HIGH
-
-// }PortpinLevelValue;
 
 
 
@@ -147,6 +125,7 @@ typedef struct
   PortPinInternalAttach  pinAttach;
   PortPinOutputCurrent   pinOutputCurrent;
   Interrupt_Type         pinInterruptType;
+  GpioNotification       pinNotification;
 
 
 }Port_ConfigType;
@@ -156,13 +135,16 @@ typedef struct
  *  	GLOBAL DATA PROTOTYPES
  *****************************************************************/
   extern const Port_ConfigType ConfigType [];
-
+  // extern uint32 mode ;
+  extern uint32 offTime;
+  extern uint32 onTime ;
+  extern boolean onOffFlag;
 
 /******************************************************************
  *  	GLOBAL FUNCTIONS PROTOTYPES
  *****************************************************************/
 
-void Port_Init(const Port_ConfigType* ConfigPtr);
+extern void Port_Init(const Port_ConfigType* ConfigPtr);
 
 #endif /*Port_Int_H*/
 

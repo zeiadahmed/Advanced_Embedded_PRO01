@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "std_types.h": "c",
-        "dio.h": "c"
+        "dio.h": "c",
+        "port_int.h": "c",
+        "gpt.h": "c"
     }
 }

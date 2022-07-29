@@ -121,12 +121,7 @@ void IntCtrl_Init(void)
    
 
     }
-    /*TODO : Configure grouping\SubGrouping System in APINT register in SCB*/
-    
-	
-    /*TODO : Assign Group\Subgroup priority in NVIC_PRIx Nvic and SCB_SYSPRIx Registers*/
 
-    /*TODO : Enable\Disable based on user configurations ion NVIC_ENx and SCB_Sys Resigters*/
 }
 
 

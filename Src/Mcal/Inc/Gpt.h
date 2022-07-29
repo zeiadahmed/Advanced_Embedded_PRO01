@@ -145,36 +145,14 @@ Gpt_ValueType Gpt_GetTimeElapsed ( Gpt_ChannelType Channel);
 
 Gpt_ValueType Gpt_GetTimeRemaining (Gpt_ChannelType Channel);
 
-// Std_ReturnType Gpt_GetPredefTimerValue (Gpt_PredefTimerType PredefTimer, uint32 * TimeValuePtr );
 
-/*Ensure the timer is disabled (the TnEN bit in the GPTMCTL register is cleared) before making any changes.*/
-
-/*Write the GPTM Configuration Register (GPTMCFG) with a value of 0x0000.0000.*/
-
-/*Configure the TnMR field in the GPTM Timer n Mode Register (GPTMTnMR): 
-Write a value of 0x1 for One-Shot mode 
-Write a value of 0x2 for Periodic mode.*/
-
-/*Optionally configure the TnSNAPS, TnWOT, TnMTE, and TnCDIR bits in the GPTMTnMR register
-to select whether to capture the value of the free-running timer at time-out, use an external
-trigger to start counting, configure an additional trigger or interrupt, and count up or down.*/
-
-/*Load the start value into the GPTM Timer n Interval Load Register (GPTMTnILR).*/
-
-/*If interrupts are required, set the appropriate bits in the GPTM Interrupt Mask Register
-(GPTMIMR).*/
-
-/*Set the TnEN bit in the GPTMCTL register to enable the timer and start counting.*/
-
-/*Poll the GPTMRIS register or wait for the interrupt to be generated (if enabled). In both cases,
-the status flags are cleared by writing a 1 to the appropriate bit of the GPTM Interrupt Clear
-Register (GPTMICR).*/
 
 /******************************************************************
  *  	GLOBAL DATA PROTOTYPES
  *****************************************************************/
 extern const  Gpt_ConfigType Gpt_Cfg[];
 extern const  Gpt_Driver_Cfg_Type Gpt_Driver_Cfg[];
+extern boolean Timer0Flag;
 
 #endif /*GPT_H*/
 

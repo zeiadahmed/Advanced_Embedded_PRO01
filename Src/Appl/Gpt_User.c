@@ -1,7 +1,7 @@
 /*******************************************************************
  *  FILE DESCIPTION
  *  --------------------------------------------------------------*/
-/**     \file  Dio.c
+/**     \file  Gpt.c
  *      \brief nested vector Interrupt controllrt Driver
  *
  *      \details the Driver Configure ALL MCU interrupts Priority into
@@ -13,8 +13,8 @@
  *  INCLUDES
  *****************************************************************/
   #include "Std_Types.h"
-  #include "Dio.h"
-  #include "Mcu_Hw.h"
+  #include "Gpt.h"
+
   
 /******************************************************************
  *  	LOCAL MACROS CONSTANT\FUNCTION
@@ -24,14 +24,7 @@
 /******************************************************************
  *  	LOCAL DATA
  *****************************************************************/
-static uint32 PortAdresList[6]={
-                  GPIO_Port_A,
-                  GPIO_Port_B,
-                  GPIO_Port_C,
-                  GPIO_Port_D,
-                  GPIO_Port_E,
-                  GPIO_Port_F
-};
+
 /******************************************************************
  *  	GLOBAL DATA
  *****************************************************************/
@@ -45,63 +38,18 @@ static uint32 PortAdresList[6]={
  *****************************************************************/
 
 
-Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId){
-
-  uint32 portAdress      =   PortAdresList[ChannelId.port];
-  uint32 pinBitMask      =   portAdress+((0x1<<ChannelId.pin)<<2);             
-  uint32 pinDataAdress   =   pinBitMask+GPIODATA;
-  Dio_LevelType level    =  GET_REGISTER_POINTER(pinDataAdress);
-  return level >> ChannelId.pin;
 
 
-}
-
-void Dio_WriteChannel(Dio_ChannelType ChannelId,Dio_LevelType Level){
-
-  uint32 portAdress      =   PortAdresList[ChannelId.port];
-  uint32 pinBitMask      =   portAdress+((0x1<<ChannelId.pin)<<2);             
-  uint32 pinDataAdress   =   pinBitMask+GPIODATA;
-  GET_REGISTER_POINTER(pinDataAdress)= Level << ChannelId.pin;
-  
-}
-
-Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId){
-
-  uint32 portAdress       =   PortAdresList[PortId];
-  uint32 portBitMask      =   portAdress+(0xFF<<2);
-  uint32 portDataAdress   =   portBitMask+GPIODATA;
-  Dio_PortLevelType level =   GET_REGISTER_POINTER(portDataAdress);
-  return level;
-
-}
 
 
-void Dio_WritePort(Dio_PortType PortId,Dio_PortLevelType Level){
-
-  uint32 portAdress       =   PortAdresList[PortId];
-  uint32 portBitMask      =   portAdress+(0xFF<<2);
-  uint32 portDataAdress   =   portBitMask+GPIODATA; 
-  GET_REGISTER_POINTER(portDataAdress) = Level;
-
-
-}
-
-Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId){
-  Dio_LevelType currentLevel = Dio_ReadChannel(ChannelId);
-  Dio_WriteChannel(ChannelId, currentLevel== 0 ? 1:0);
-  return currentLevel== 0 ? 1:0;
-
-
-}
 /******************************************************************
  *  	GLOBAL FUNCTIONS
  *****************************************************************/
 
 
 /******************************************************************
- * \Syntax          : void IntCtrl_Init(void)
- * \Description     : initialize Nvic\SCB Module by parsing the configuration
- *                    into Nvic\SCB registers
+ * \Syntax          : void Timer_Init(void)
+ * \Description     : calls the general purpose timer initialization
  * 
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Non Reentrant
@@ -109,10 +57,12 @@ Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId){
  * \Parameters (out): None
  * \Return value    : None
  *****************************************************************/   
+void Timer_Init(void){
+    Gpt_Init(Gpt_Cfg);
 
-
+}
 
 /******************************************************************
- *  	END OF FILE: Dio.c
+ *  	END OF FILE: Dio_User.c
  *****************************************************************/
 
